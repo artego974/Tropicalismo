@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  font-family: "Space Grotesk", sans-serif;
+  color: #171711;
+  background: #f7edcf;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+::selection { background: #ff4f2e; color: #fff7df; }
+.display-font { font-family: "Syne", sans-serif; }
+.mono { font-family: "DM Mono", monospace; }
+.paper-texture {
+  background-image: radial-gradient(rgba(35, 30, 14, .12) .65px, transparent .65px);
+  background-size: 5px 5px;
+}
+.tropical-shadow { box-shadow: 7px 7px 0 #171711; }
+.tropical-shadow-sm { box-shadow: 4px 4px 0 #171711; }
+.outline-text { color: transparent; -webkit-text-stroke: 1.5px #171711; }
+.marquee-track { animation: marquee 28s linear infinite; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track { animation: none; }
+}
+
+
+/* Responsive safeguards: avoid horizontal overflow on phones and small tablets. */
+img, video, iframe { max-width: 100%; }
+#root, main, section, header, footer { min-width: 0; }
+pre { max-width: 100%; }
+@media (max-width: 639px) {
+  .display-font { overflow-wrap: anywhere; }
+  .tropical-shadow { box-shadow: 4px 4px 0 #171711; }
+}
