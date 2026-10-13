@@ -1,0 +1,130 @@
+// Imagens da página (em public/images) com autoria e licença do Wikimedia Commons.
+const base = import.meta.env.BASE_URL;
+
+const commonsPage = (file) => `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replaceAll(" ", "_"))}`;
+
+const arquivoNacional = (file) => ({
+  author: "Arquivo Nacional, Fundo Correio da Manhã",
+  short: "Arquivo Nacional",
+  license: "Domínio público",
+  url: commonsPage(file),
+});
+
+const creativeCommons = (file, author, license, licenseUrl) => ({
+  author,
+  short: `${author} (${license})`,
+  license,
+  licenseUrl,
+  url: commonsPage(file),
+});
+
+export const images = {
+  caetanoFestival: {
+    label: "Caetano Veloso, 1967",
+    src: `${base}images/caetano-festival-1967.webp`,
+    width: 1600,
+    height: 1057,
+    title: "Caetano Veloso no III Festival da Música Popular Brasileira, 1967",
+    alt: "Caetano Veloso, de braços abertos, canta no palco do III Festival da Record, com uma banda de guitarras e uma orquestra ao fundo",
+    credit: arquivoNacional("Caetano Veloso no III Festival da Música Popular.tif"),
+  },
+  caetano1972: {
+    label: "Caetano Veloso, 1972",
+    src: `${base}images/caetano-1972.webp`,
+    width: 720,
+    height: 956,
+    title: "Caetano Veloso em 1972",
+    alt: "Caetano Veloso, de cabelos longos e camisa xadrez, canta ao microfone diante da banda",
+    credit: arquivoNacional("Caetano Veloso, Fundo Correio da Manhã.tif"),
+  },
+  gilRetrato: {
+    label: "Gilberto Gil, retrato",
+    src: `${base}images/gil-retrato-anos-60.webp`,
+    width: 720,
+    height: 1002,
+    title: "Gilberto Gil nos anos 1960",
+    alt: "Gilberto Gil canta segurando o microfone, em close",
+    credit: arquivoNacional("Gilberto Gil, nos anos 1960 2.tif"),
+  },
+  gilPalco: {
+    label: "Gilberto Gil, palco",
+    src: `${base}images/gil-palco-anos-60.webp`,
+    width: 1280,
+    height: 815,
+    title: "Gilberto Gil no palco, anos 1960",
+    alt: "Gilberto Gil de braços abertos no palco, cercado por músicos, violões e guitarras",
+    credit: arquivoNacional("Gilberto Gil nos anos 1960.tif"),
+  },
+  gal1971: {
+    label: "Gal Costa, 1971",
+    src: `${base}images/gal-costa-1971.webp`,
+    width: 720,
+    height: 677,
+    title: "Gal Costa em 1971",
+    alt: "Gal Costa, de cabelos longos e cacheados, canta e toca violão",
+    credit: arquivoNacional("Gal Costa, 1971.tif"),
+  },
+  gal1969: {
+    label: "Gal Costa, 1969",
+    src: `${base}images/gal-costa-1969.webp`,
+    width: 720,
+    height: 1393,
+    title: "Gal Costa em maio de 1969",
+    alt: "Gal Costa no palco com cabelos cacheados volumosos, boá de plumas, colete longo de pied-de-poule, blusa de cetim, medalhões e calça larga",
+    credit: arquivoNacional("Gal Costa.tif"),
+  },
+  mutantes1969: {
+    label: "Os Mutantes, 1969",
+    src: `${base}images/os-mutantes-1969.webp`,
+    width: 960,
+    height: 885,
+    title: "Os Mutantes em agosto de 1969",
+    alt: "Os três integrantes d'Os Mutantes fantasiados no palco: cartola, vestido de época, calças listradas e guitarras",
+    credit: arquivoNacional("Os Mutantes.tif"),
+  },
+  nara1965: {
+    label: "Nara Leão, 1965",
+    src: `${base}images/nara-leao-1965.webp`,
+    width: 720,
+    height: 1034,
+    title: "Nara Leão em 1965",
+    alt: "Nara Leão sentada ao lado de um microfone",
+    credit: arquivoNacional("Nara Leão, 1965.tif"),
+  },
+  oiticica1966: {
+    label: "Hélio Oiticica, 1966",
+    src: `${base}images/helio-oiticica-1966.webp`,
+    width: 720,
+    height: 1245,
+    title: "Hélio Oiticica em 1966",
+    alt: "Retrato do artista Hélio Oiticica sentado em seu ateliê",
+    credit: arquivoNacional("Hélio Oiticica (1966).tif"),
+  },
+  museuCupula: {
+    label: "cúpula e rampa",
+    src: `${base}images/museu-knorn.webp`,
+    width: 1280,
+    height: 857,
+    title: "Cúpula e rampa do Museu Nacional da República",
+    alt: "A cúpula branca do Museu Nacional da República e sua rampa, sob o céu azul de Brasília",
+    credit: creativeCommons("Museu Nacional da República.jpg", "Florian Knorn", "CC BY 3.0", "https://creativecommons.org/licenses/by/3.0/"),
+  },
+  museuRampa: {
+    label: "rampa",
+    src: `${base}images/museu-saramago.webp`,
+    width: 750,
+    height: 499,
+    title: "A rampa curva do museu",
+    alt: "A rampa curva do museu, com uma pessoa caminhando sob o céu nublado",
+    credit: creativeCommons("MUSEU NACIONAL DA REPUBLICA BRASILIA BRASIL 2.jpg", "Pilar Saramago", "CC BY-SA 4.0", "https://creativecommons.org/licenses/by-sa/4.0/"),
+  },
+  museuNoite: {
+    label: "vista noturna",
+    src: `${base}images/museu-tullio.webp`,
+    width: 1280,
+    height: 720,
+    title: "O museu à noite, no Eixo Monumental",
+    alt: "Vista noturna do Eixo Monumental, com a cúpula iluminada do museu ao centro",
+    credit: creativeCommons("Museu Nacional da República - Brasília - 20250924204534.jpg", "Túllio F", "CC BY-SA 4.0", "https://creativecommons.org/licenses/by-sa/4.0/"),
+  },
+};
