@@ -1,39 +1,138 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap');
 @import "tailwindcss";
 
-:root {
-  font-family: "Space Grotesk", sans-serif;
-  color: #171711;
-  background: #f7edcf;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+/* Identidade visual: cores da bandeira "desfolhada" pelos tropicalistas + rosa psicodélico,
+   sobre papel envelhecido de capa de disco. */
+@theme {
+  --color-papel: #f6ecd6;
+  --color-papel-escuro: #e9dbbb;
+  --color-tinta: #1c1712;
+  --color-mata: #0b6b3a;
+  --color-folha: #46b05a;
+  --color-sol: #ffc21a;
+  --color-urucum: #e64a14;
+  --color-rosa: #ee4c97;
+  --color-anil: #1f4fb8;
+
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Shrikhand", "Cooper Black", Georgia, serif;
+
+  --animate-marquee: marquee 50s linear infinite;
+  --animate-spin-slow: spin 80s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; }
-::selection { background: #ff4f2e; color: #fff7df; }
-.display-font { font-family: "Syne", sans-serif; }
-.mono { font-family: "DM Mono", monospace; }
-.paper-texture {
-  background-image: radial-gradient(rgba(35, 30, 14, .12) .65px, transparent .65px);
-  background-size: 5px 5px;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-papel);
+    color: var(--color-tinta);
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Compensa o cabeçalho fixo ao navegar pelas âncoras. */
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  ::selection {
+    background-color: var(--color-rosa);
+    color: var(--color-tinta);
+  }
+
+  :focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
 }
-.tropical-shadow { box-shadow: 7px 7px 0 #171711; }
-.tropical-shadow-sm { box-shadow: 4px 4px 0 #171711; }
-.outline-text { color: transparent; -webkit-text-stroke: 1.5px #171711; }
-.marquee-track { animation: marquee 28s linear infinite; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .marquee-track { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
+@utility shadow-pop {
+  box-shadow: 6px 6px 0 var(--color-tinta);
+}
 
-/* Responsive safeguards: avoid horizontal overflow on phones and small tablets. */
-img, video, iframe { max-width: 100%; }
-#root, main, section, header, footer { min-width: 0; }
-pre { max-width: 100%; }
-@media (max-width: 639px) {
-  .display-font { overflow-wrap: anywhere; }
-  .tropical-shadow { box-shadow: 4px 4px 0 #171711; }
+@utility shadow-pop-sm {
+  box-shadow: 4px 4px 0 var(--color-tinta);
+}
+
+/* Retícula da Pop Art. */
+@utility halftone {
+  background-image: radial-gradient(color-mix(in oklab, var(--color-tinta) 14%, transparent) 1.1px, transparent 1.5px);
+  background-size: 10px 10px;
+}
+
+@utility stripe-tropical {
+  background-image: linear-gradient(90deg, var(--color-mata) 0 20%, var(--color-sol) 20% 40%, var(--color-urucum) 40% 60%, var(--color-rosa) 60% 80%, var(--color-anil) 80%);
+}
+
+@utility sunburst {
+  background-image: repeating-conic-gradient(from -5deg, var(--color-sol) 0deg 10deg, var(--color-urucum) 10deg 20deg);
+}
+
+@utility vinyl {
+  background:
+    radial-gradient(circle, var(--color-tinta) 0 2.5%, var(--color-sol) 3% 16%, var(--color-tinta) 16.5% 17.5%, transparent 18%),
+    repeating-radial-gradient(circle, #1c1712 0 2px, #342b23 2px 3.5px);
+}
+
+/* Título psicodélico em camadas, como nos letreiros de capa de disco. */
+@utility title-psico {
+  color: var(--color-sol);
+  -webkit-text-stroke: 0.028em var(--color-tinta);
+  paint-order: stroke fill;
+  text-shadow:
+    0.05em 0.05em 0 var(--color-rosa),
+    0.1em 0.1em 0 var(--color-mata);
+}
+
+/* Foto em duotom: o P&B se mistura com a cor de fundo do quadro. */
+@utility duotone {
+  isolation: isolate;
+
+  & img {
+    mix-blend-mode: multiply;
+    filter: grayscale(1) contrast(1.08);
+  }
+}
+
+/* Borda superior em ondas, como o calçadão de Copacabana. */
+@utility wave-top {
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: calc(100% - 1px);
+    height: 14px;
+    background-color: inherit;
+    pointer-events: none;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='14'%3E%3Cpath d='M0 8Q14-2 28 8T56 8V14H0Z'/%3E%3C/svg%3E") repeat-x left bottom / 56px 14px;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='14'%3E%3Cpath d='M0 8Q14-2 28 8T56 8V14H0Z'/%3E%3C/svg%3E") repeat-x left bottom / 56px 14px;
+  }
 }
