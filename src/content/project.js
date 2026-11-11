@@ -3,7 +3,7 @@
 
 export const project = {
   // Link do clipe no YouTube, Vimeo ou Google Drive (compartilhado como "qualquer pessoa com o link").
-  videoUrl: "",
+  videoUrl: "https://youtu.be/sHqqxc5WBGw",
 
   // Fotos dos looks do desfile: coloque os arquivos em public/images/looks/
   // e informe o caminho sem a barra inicial, ex.: "images/looks/look-01.jpg".
